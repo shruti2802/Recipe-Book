@@ -1,0 +1,39 @@
+<div class="row" style="height: 100%">
+  <div class="col-xs-12 col-sm-12">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" [formControl]="controls.email">
+            <app-error-control *ngIf="controls.email.invalid && controls.email.touched && !controls.email.value"></app-error-control>
+            <app-error-control *ngIf="controls.email.invalid && controls.email.touched && controls.email.value" message="Enter valid email"></app-error-control>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" [formControl]="controls.password">
+            <app-error-control *ngIf="controls.password.invalid && controls.password.touched"></app-error-control>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="!loading">
+        <div class="col-xs-12">
+          <div class="btn-group">
+            <input type="submit" (click)="submit()" class="btn btn-primary" value="Sign In" [disabled]="form.invalid">
+          </div>
+        </div>
+      </div>
+      <app-progress-spinner *ngIf="loading"></app-progress-spinner>
+    </form>
+  </div>
+  <div class="col-xs-12" style="margin-top: 35px;">
+    <p class="text-center" style="font-size: 16px">
+      Don't have an account? <a routerLink="../sign-up" style="font-weight: bold">Sign Up</a>
+    </p>
+  </div>
+</div>
+<app-snackbar *ngIf="visible" [message]="errorMessage" (closed)="closed()"></app-snackbar>

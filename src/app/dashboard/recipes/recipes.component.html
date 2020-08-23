@@ -1,0 +1,30 @@
+ <div class="row">
+   <div>
+     <div>
+       <div class="btn-group" style="display: flex; flex-direction: row; justify-content: space-between">
+         <div style="display: flex; flex-direction: row; width: fit-content;" >
+           <div class="col-xs-6" style="max-width: 120px; padding: 0;">
+             <button class="btn btn-success" routerLink="../new">New Recipe</button>
+           </div>
+           <select class="form-control btn-primary" id="exampleFormControlSelect1" style="width: 130px;" [formControl]="visibility" >
+             <option *ngFor="let option of options" [value]="option">{{option | titlecase}}</option>
+           </select>
+         </div>
+         <app-input-box (filterChanged)="filter($event)"></app-input-box>
+       </div>
+     </div>
+     <hr>
+   </div>
+     <div class="col-md-5">
+       <app-recipe-list *ngIf="!!recipes" [recipes]="filteredRecipe"></app-recipe-list>
+       <div class="row" *ngIf="!recipes">
+         <div class="col-xs-12">
+           <h4>Fetching Recipes...</h4>
+           <app-progress-spinner></app-progress-spinner>
+         </div>
+       </div>
+     </div>
+     <div class="col-md-7">
+        <router-outlet></router-outlet>
+     </div>
+ </div>

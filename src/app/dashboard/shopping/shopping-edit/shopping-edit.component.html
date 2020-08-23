@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="shoppingForm">
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label>Name</label>
+                    <input type="text" [formControl]="controls.ingredientName" class="form-control">
+                </div>
+                <div class="col-sm-2">
+                    <label>Quantity</label>
+                    <input type="number" [formControl]="controls.ingredientAmount" class="form-control">
+                </div>
+              <div class="col-sm-2">
+                <label>Unit</label>
+                <input type="text" [formControl]="controls.amountUnit" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                  <button type="submit" class="btn btn-success" (click)="submit()" [disabled]="shoppingForm.invalid" >{{ editing ? 'Update' : 'Add'}}</button>
+                    <input type="button" value="Delete" class="btn btn-danger" (click)="delete()" *ngIf="editing">
+                    <input type="button" value="Clear" class="btn btn-primary" [disabled]="formValueList.length === 0" (click)="clear()">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
